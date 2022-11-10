@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:8080/testdb
+    url: jdbc:mysql://localhost:8080/likeliondb
     username: root
     password: root
   jpa:
@@ -14,5 +14,3 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     database: mysql
     hibernate.ddl-auto: update
-
-
