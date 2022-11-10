@@ -25,9 +25,14 @@ public class ArticleController {
         this.articleRepository = articleRepository;
     }
 
+    @GetMapping("")
+    public String indexPage() {
+        return "redirect:/articles/list";
+    }
+
     @GetMapping("/register")
     public String registerPage() {
-        return "article/register";
+        return "articles/register";
     }
 
     @PostMapping("")
