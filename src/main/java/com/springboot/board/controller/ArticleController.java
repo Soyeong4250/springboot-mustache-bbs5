@@ -25,7 +25,7 @@ public class ArticleController {
         this.articleRepository = articleRepository;
     }
 
-    @GetMapping("")
+    @GetMapping()
     public String indexPage() {
         return "redirect:/articles/list";
     }
@@ -35,12 +35,12 @@ public class ArticleController {
         return "articles/register";
     }
 
-    @PostMapping("")
+    @PostMapping()
     public String registArticles(ArticleDto articleDto) {
         log.info(articleDto.toString());
         Article savedArticle = articleRepository.save(articleDto.toEntity());
         log.info("generatedId: {}", savedArticle.getId());
-        return "";
+        return String.format("redirect:/articles/%d", savedArticle.getId());
     }
 
     @GetMapping("/{id}")
