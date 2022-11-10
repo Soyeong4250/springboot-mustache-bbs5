@@ -71,4 +71,13 @@ public class ArticleController {
             return "error";
         }
     }
+
+    @PostMapping("/{id}/update")
+    public String updateArticle(@PathVariable Long id, ArticleDto articleDto, Model model) {
+        log.debug("updateArticle 호출");
+        log.info("title:{} content{}", articleDto.getTitle(), articleDto.getContent());
+        Article article = articleRepository.save(articleDto.toEntity());
+        model.addAttribute("article", article);
+        return String.format("redirect:/articles/%d", article.getId());
+    }
 }
