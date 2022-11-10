@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -48,5 +49,13 @@ public class ArticleController {
             model.addAttribute("message", String.format("%d번 게시글이 존재하지 않습니다.", id));
             return "error";
         }
+    }
+
+    @GetMapping("/list")
+    public String articleList(Model model) {
+        log.debug("articleList 호출");
+        List<Article> articleList = articleRepository.findAll();
+        model.addAttribute("articles", articleList);
+        return "articles/list";
     }
 }
