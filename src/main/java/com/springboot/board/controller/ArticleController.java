@@ -58,4 +58,17 @@ public class ArticleController {
         model.addAttribute("articles", articleList);
         return "articles/list";
     }
+
+    @GetMapping("/{id}/edit")
+    public String modifyArticlePage(@PathVariable Long id, Model model) {
+        Optional<Article> optArticle = articleRepository.findById(id);
+
+        if(!optArticle.isEmpty()) {
+            model.addAttribute("article", optArticle.get());
+            return "articles/modify";
+        } else {
+            model.addAttribute("message", String.format("%d번 게시글이 존재하지 않습니다.", id));
+            return "error";
+        }
+    }
 }
