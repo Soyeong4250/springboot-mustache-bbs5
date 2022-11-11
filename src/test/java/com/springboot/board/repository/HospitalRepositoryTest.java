@@ -16,7 +16,7 @@ class HospitalRepositoryTest {
     @Autowired
     HospitalRepository hospitalRepository;
 
-    @Test
+    /*@Test
     @DisplayName("Hospital 정보를 잘 가져오는지 테스트")
     void getHospital() {
         hospitalRepository.findById(1);
@@ -24,6 +24,6 @@ class HospitalRepositoryTest {
         Hospital hp = hospital.get();
         System.out.println(hp.getId());
         assertEquals(1, hp.getId());
-    }
+    }*/
 
 }
