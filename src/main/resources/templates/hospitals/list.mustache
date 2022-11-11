@@ -1,0 +1,26 @@
+{{> layouts/header}}
+<div>
+    <table class="table table-bordered text-center">
+        <thead>
+        <tr class="table-primary">
+            <th scope="col">Id</th>
+            <th scope="col">병원명</th>
+            <th scope="col">주소</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{# hospitals}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a href="#">{{hospitalName}}</a></td>
+                <td>{{fullAddress}}</td>
+            </tr>
+        {{/ hospitals}}
+
+        </tbody>
+    </table>
+    <div>
+        <button type="button" onclick="location.href='/articles/register'" class="btn btn-primary">Write</button>
+    </div>
+</div>
+{{> layouts/footer}}
