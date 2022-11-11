@@ -21,6 +21,11 @@ public class HospitalController {
         this.hospitalRepository = hospitalRepository;
     }
 
+    @GetMapping()
+    public String hospitalsIndex() {
+        return "redirect:/hospitals/list";
+    }
+
     @GetMapping("/list")
     public String hospitalList(Pageable pageable, Model model) {
         log.debug("hospitalList 호출");
