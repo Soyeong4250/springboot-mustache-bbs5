@@ -1,11 +1,12 @@
 {{> layouts/header}}
-<div>
+<div class = "container">
+    <h1> 전국 병원 정보 </h1>
     <table class="table table-bordered text-center">
         <thead>
         <tr class="table-primary">
             <th scope="col">Id</th>
             <th scope="col">병원명</th>
-            <th scope="col">주소</th>
+            <th scope="col">도로명 주소</th>
         </tr>
         </thead>
         <tbody>
@@ -13,12 +14,45 @@
             <tr>
                 <td>{{id}}</td>
                 <td><a href="#">{{hospitalName}}</a></td>
-                <td>{{fullAddress}}</td>
+                <td>{{roadNameAddress}}</td>
             </tr>
         {{/ hospitals}}
 
         </tbody>
     </table>
+    {{! Page }}
+    <div>
+        <ul class="pagination justify-content-center">
+            {{# hasPrev}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{previous}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {{/ hasPrev}}
+            {{^ hasPrev}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{previous}}" disabled="disabled" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {{/hasPrev}}
+            {{# hasNext}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{next}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {{/ hasNext}}
+            {{^ hasNext}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{next}}" disabled="disabled" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {{/ hasNext}}
+        </ul>
+    </div>
     <div>
         <button type="button" onclick="location.href='/articles/register'" class="btn btn-primary">Write</button>
     </div>
