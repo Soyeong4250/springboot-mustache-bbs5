@@ -26,7 +26,7 @@ public class ArticleController {
     }
 
     @GetMapping()
-    public String indexPage() {
+    public String articlesIndex() {
         return "redirect:/articles/list";
     }
 
