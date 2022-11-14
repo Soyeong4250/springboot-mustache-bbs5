@@ -36,9 +36,38 @@ class HospitalRepositoryTest {
         inClues.add("보건지소");
         inClues.add("보건진료소");
         List<Hospital> hospitals = hospitalRepository.findByBusinessTypeNameIn(inClues);
-        for (var hospital:hospitals) {
-            System.out.println(hospital.getHospitalName());
+
+        printHospitalsInfo(hospitals);
+    }
+
+    @Test
+    @DisplayName("Containing을 이용한 Like 검색")
+    void containing() {
+        List<Hospital> hospitals = hospitalRepository.findByFullAddressContaining("송파구");
+        printHospitalsInfo(hospitals);
+    }
+
+    @Test
+    @DisplayName("StartsWith를 이용한 Like 검색")
+    void startsWith() {
+        List<Hospital> hospitals = hospitalRepository.findByHospitalNameStartsWith("경희");
+        printHospitalsInfo(hospitals);
+    }
+
+    @Test
+    @DisplayName("EndsWith를 이용한 Like 검색")
+    void endsWith() {
+        List<Hospital> hospitals = hospitalRepository.findByHospitalNameEndsWith("병원");
+        printHospitalsInfo(hospitals);
+    }
+
+
+    void printHospitalsInfo(List<Hospital> hospitals) {
+        for (var hospital : hospitals) {
+            System.out.printf("%s | %s \n", hospital.getHospitalName(), hospital.getFullAddress());
         }
+
+        System.out.println(hospitals.size());
     }
 
 }
