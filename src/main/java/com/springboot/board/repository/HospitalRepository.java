@@ -14,4 +14,5 @@ public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
     List<Hospital> findByFullAddressContaining(String keyword);
     List<Hospital> findByHospitalNameStartsWith(String keyword);
     List<Hospital> findByHospitalNameEndsWith(String keyword);
+    List<Hospital> findByTotalNumberOfBedsBetween(int startCnt, int endCnt);
 }
