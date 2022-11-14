@@ -22,16 +22,18 @@ public class Hospital {
     private String fullAddress;
     @Column(name = "hospital_name")
     private String hospitalName;
-
     @Column(name = "business_type_name")
     private String businessTypeName;
+    @Column(name = "total_number_of_beds")
+    private Integer totalNumberOfBeds;
 
 
-    public Hospital(Integer id, String roadNameAddress, String fullAddress, String hospitalName, String businessTypeName) {
+    public Hospital(Integer id, String roadNameAddress, String fullAddress, String hospitalName, String businessTypeName, Integer totalNumberOfBeds) {
         this.id = id;
         this.roadNameAddress = roadNameAddress;
         this.fullAddress = fullAddress;
         this.hospitalName = hospitalName;
         this.businessTypeName = businessTypeName;
+        this.totalNumberOfBeds = totalNumberOfBeds;
     }
 }

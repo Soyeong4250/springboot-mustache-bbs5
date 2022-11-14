@@ -14,8 +14,9 @@ public class HospitalDto {
     private String fullAddress;
     private String hospitalName;
     private String businessTypeName;
+    private int totalNumberOfBeds;
 
     public Hospital toEntity() {
-        return new Hospital(this.id, this.roadNameAddress, this.fullAddress, this.hospitalName, this.businessTypeName);
+        return new Hospital(this.id, this.roadNameAddress, this.fullAddress, this.hospitalName, this.businessTypeName, this.totalNumberOfBeds);
     }
 }
