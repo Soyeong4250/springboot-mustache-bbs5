@@ -70,7 +70,7 @@ class HospitalRepositoryTest {
 
     void printHospitalsInfo(List<Hospital> hospitals) {
         for (var hospital : hospitals) {
-            System.out.printf("%s | %s | %d\n", hospital.getHospitalName(), hospital.getFullAddress(), hospital.getTotalNumberOfBeds());
+            System.out.printf("%-15s | %-50s | %-5d\n", hospital.getHospitalName(), hospital.getFullAddress(), hospital.getTotalNumberOfBeds());
         }
 
         System.out.println(hospitals.size());
