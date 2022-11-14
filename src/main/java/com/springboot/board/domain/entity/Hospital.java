@@ -23,11 +23,15 @@ public class Hospital {
     @Column(name = "hospital_name")
     private String hospitalName;
 
+    @Column(name = "business_type_name")
+    private String businessTypeName;
 
-    public Hospital(Integer id, String roadNameAddress, String fullAddress, String hospitalName) {
+
+    public Hospital(Integer id, String roadNameAddress, String fullAddress, String hospitalName, String businessTypeName) {
         this.id = id;
         this.roadNameAddress = roadNameAddress;
         this.fullAddress = fullAddress;
         this.hospitalName = hospitalName;
+        this.businessTypeName = businessTypeName;
     }
 }
