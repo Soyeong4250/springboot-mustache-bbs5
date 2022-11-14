@@ -1,11 +1,9 @@
 package com.springboot.board.domain.dto;
 
-import com.springboot.board.domain.Hospital;
+import com.springboot.board.domain.entity.Hospital;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter

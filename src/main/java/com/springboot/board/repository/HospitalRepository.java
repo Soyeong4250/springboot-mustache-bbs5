@@ -1,6 +1,6 @@
 package com.springboot.board.repository;
 
-import com.springboot.board.domain.Hospital;
+import com.springboot.board.domain.entity.Hospital;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

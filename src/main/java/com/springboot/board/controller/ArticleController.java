@@ -1,6 +1,6 @@
 package com.springboot.board.controller;
 
-import com.springboot.board.domain.Article;
+import com.springboot.board.domain.entity.Article;
 import com.springboot.board.domain.dto.ArticleDto;
 import com.springboot.board.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;

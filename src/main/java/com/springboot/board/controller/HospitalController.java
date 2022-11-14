@@ -1,6 +1,6 @@
 package com.springboot.board.controller;
 
-import com.springboot.board.domain.Hospital;
+import com.springboot.board.domain.entity.Hospital;
 import com.springboot.board.repository.HospitalRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

@@ -1,6 +1,6 @@
 package com.springboot.board.domain.dto;
 
-import com.springboot.board.domain.Article;
+import com.springboot.board.domain.entity.Article;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
