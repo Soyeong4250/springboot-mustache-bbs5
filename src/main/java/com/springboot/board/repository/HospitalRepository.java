@@ -11,4 +11,7 @@ import java.util.List;
 public interface HospitalRepository extends JpaRepository<Hospital, Integer> {
     Page<Hospital> findAll(Pageable pageable);
     List<Hospital> findByBusinessTypeNameIn(List<String> businessTypes);
+    List<Hospital> findByFullAddressContaining(String keyword);
+    List<Hospital> findByFullAddressStartsWith(String keyword);
+    List<Hospital> findByFullAddressEndsWith(String keyword);
 }
