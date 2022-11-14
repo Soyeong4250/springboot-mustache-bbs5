@@ -8,7 +8,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
-public class HospitalDto {
+public class HospitalRequestDto {
     private int id;
     private String roadNameAddress;
     private String fullAddress;
