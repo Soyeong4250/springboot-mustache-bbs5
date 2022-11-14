@@ -1,4 +1,4 @@
-package com.springboot.board.domain;
+package com.springboot.board.domain.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
