@@ -64,13 +64,17 @@ class HospitalRepositoryTest {
     @Test
     @DisplayName("Between을 이용하여 조건에 맞는 병상 수를 가진 병원 리스트 조회")
     void between() {
-        List<Hospital> hospitals = hospitalRepository.findByTotalNumberOfBedsBetween(10, 19);  // 20미만 이므로 19이하까지만 구하기
+        List<Hospital> hospitals = hospitalRepository.findByTotalNumberOfBedsBetweenOrderByTotalNumberOfBedsDesc(10, 19);  // 20미만 이므로 19이하까지만 구하기
         printHospitalsInfo(hospitals);
     }
 
     void printHospitalsInfo(List<Hospital> hospitals) {
         for (var hospital : hospitals) {
-            System.out.printf("%-15s | %-50s | %-5d\n", hospital.getHospitalName(), hospital.getFullAddress(), hospital.getTotalNumberOfBeds());
+            if(hospital.getFullAddress() == null) {
+                System.out.printf("%-20s | %-40s | %-5d\n", hospital.getHospitalName(), hospital.getRoadNameAddress(), hospital.getTotalNumberOfBeds());
+            } else {
+                System.out.printf("%-20s | %-40s | %-5d\n", hospital.getHospitalName(), hospital.getFullAddress(), hospital.getTotalNumberOfBeds());
+            }
         }
 
         System.out.println(hospitals.size());
