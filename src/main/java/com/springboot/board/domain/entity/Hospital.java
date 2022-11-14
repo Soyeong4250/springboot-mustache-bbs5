@@ -18,13 +18,16 @@ public class Hospital {
     private Integer id;  // Long --> BigInt
     @Column(name = "road_name_address")
     private String roadNameAddress;
+    @Column(name = "full_address")
+    private String fullAddress;
     @Column(name = "hospital_name")
     private String hospitalName;
 
 
-    public Hospital(Integer id, String roadNameAddress, String hospitalName) {
+    public Hospital(Integer id, String roadNameAddress, String fullAddress, String hospitalName) {
         this.id = id;
         this.roadNameAddress = roadNameAddress;
+        this.fullAddress = fullAddress;
         this.hospitalName = hospitalName;
     }
 }
