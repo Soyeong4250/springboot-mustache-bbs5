@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "nation_wide_hospitals")
@@ -28,6 +27,8 @@ public class Hospital {
     private String businessTypeName;
     @Column(name = "total_number_of_beds")
     private Integer totalNumberOfBeds;
+
+    private Integer businessStatusCode;
 
 
     public Hospital(Integer id, String roadNameAddress, String fullAddress, String hospitalName, String businessTypeName, Integer totalNumberOfBeds) {
