@@ -1,5 +1,7 @@
 package com.springboot.board.domain.entity;
 
+import com.springboot.board.domain.dto.HospitalResponseDto;
+import com.springboot.board.repository.HospitalRepository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,5 +37,9 @@ public class Hospital {
         this.hospitalName = hospitalName;
         this.businessTypeName = businessTypeName;
         this.totalNumberOfBeds = totalNumberOfBeds;
+    }
+
+    public static HospitalResponseDto of(Hospital hospital) {
+        return new HospitalResponseDto(hospital.getId(), hospital.getRoadNameAddress(), hospital.getFullAddress(), hospital.getHospitalName(), hospital.getBusinessTypeName(), hospital.getTotalNumberOfBeds());
     }
 }
