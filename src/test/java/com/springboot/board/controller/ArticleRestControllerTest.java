@@ -1,11 +1,13 @@
 package com.springboot.board.controller;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.board.domain.dto.ArticleRequestDto;
 import com.springboot.board.domain.dto.ArticleResponseDto;
 import com.springboot.board.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -13,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -57,18 +60,18 @@ public class ArticleRestControllerTest {
     @DisplayName("게시글이 잘 저장되는지 테스트")
     void registerArticle() throws Exception {
         ArticleRequestDto articleRequestDto = new ArticleRequestDto("Controller Test", "registerArticle Test");
-        given(articleService.saveArticle(articleRequestDto)).willReturn(new ArticleResponseDto(15L, articleRequestDto.getTitle(), articleRequestDto.getContent()));
+        given(articleService.saveArticle(any(ArticleRequestDto.class)))
+                .willReturn(new ArticleResponseDto(15L, articleRequestDto.getTitle(), articleRequestDto.getContent()));
 
-        System.out.println(articleRequestDto);
         mockMvc.perform(post("/api/v1/articles")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsBytes(articleRequestDto)))
+                    .content(objectMapper.writeValueAsBytes(articleRequestDto))
+                    .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.title").exists())
                 .andExpect(jsonPath("$.content").exists())
                 .andDo(print());
 
-        verify(articleService).saveArticle(articleRequestDto);
+        verify(articleService).saveArticle(ArgumentMatchers.refEq(articleRequestDto));
     }
 }
