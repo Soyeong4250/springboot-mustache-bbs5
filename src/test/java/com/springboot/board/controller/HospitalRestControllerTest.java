@@ -16,8 +16,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(HospitalController.class)
-class HospitalControllerTest {
+@WebMvcTest(HospitalRestController.class)
+class HospitalRestControllerTest {
 
     @Autowired
     MockMvc mockMvc;
