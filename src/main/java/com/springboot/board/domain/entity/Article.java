@@ -1,7 +1,6 @@
 package com.springboot.board.domain.entity;
 
 import com.springboot.board.domain.dto.ArticleResponseDto;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,8 +20,7 @@ public class Article {
     private String title;
     private String content;
 
-    public Article(Long id, String title, String content) {
-        this.id = id;
+    public Article(String title, String content) {
         this.title = title;
         this.content = content;
     }

@@ -1,20 +1,21 @@
 package com.springboot.board.domain.dto;
 
 import com.springboot.board.domain.entity.Article;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class ArticleRequestDto {
-
-    private Long id;
     private String title;
     private String content;
 
+    public ArticleRequestDto(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     public Article toEntity() {
-        return new Article(this.id, this.title, this.content);
+        return new Article(this.title, this.content);
     }
 }
