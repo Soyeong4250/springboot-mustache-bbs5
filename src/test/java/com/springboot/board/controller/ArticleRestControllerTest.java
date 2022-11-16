@@ -31,8 +31,9 @@ public class ArticleRestControllerTest {
         ArticleResponseDto articleResponseDto = ArticleResponseDto.builder()
                 .id(8L)
                 .title("likelionboard")
-                .content("lieklion")
+                .content("likelion")
                 .build();
+        // given() : 메서드 호출과 주입받는 파라미터 가정 & willReturn() : 비교할 객체 Dto
         given(articleService.getArticle(8L)).willReturn((articleResponseDto));
 
         Long articleId = 8L;
@@ -40,7 +41,7 @@ public class ArticleRestControllerTest {
         mockMvc.perform(get(String.format("/api/v1/articles/%d", articleId)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").exists())
-                .andExpect(jsonPath("$.title").value("likelionboard"))
+                .andExpectAll(jsonPath("$.title").value("likelionboard"), jsonPath("$.content").value("likelion"))
                 .andDo(print());
         verify(articleService).getArticle(articleId);
     }
