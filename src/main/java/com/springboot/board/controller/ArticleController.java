@@ -1,7 +1,7 @@
 package com.springboot.board.controller;
 
 import com.springboot.board.domain.entity.Article;
-import com.springboot.board.domain.dto.ArticleDto;
+import com.springboot.board.domain.dto.ArticleRequestDto;
 import com.springboot.board.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ public class ArticleController {
     }
 
     @PostMapping()
-    public String registArticles(ArticleDto articleDto) {
+    public String registArticles(ArticleRequestDto articleDto) {
         log.info(articleDto.toString());
         Article savedArticle = articleRepository.save(articleDto.toEntity());
         log.info("generatedId: {}", savedArticle.getId());
@@ -78,7 +78,7 @@ public class ArticleController {
     }
 
     @PostMapping("/{id}/update")
-    public String updateArticle(@PathVariable Long id, ArticleDto articleDto, Model model) {
+    public String updateArticle(@PathVariable Long id, ArticleRequestDto articleDto, Model model) {
         log.debug("updateArticle 호출");
         log.info("title:{} content{}", articleDto.getTitle(), articleDto.getContent());
         Article article = articleRepository.save(articleDto.toEntity());
