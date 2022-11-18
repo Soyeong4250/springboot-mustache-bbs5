@@ -25,7 +25,7 @@ public class HospitalService {
         switch (hospital.getBusinessStatusCode()) {
             case 13: hospitalResponseDto.setBusinessStatusName("영업중"); break;
             case 3: hospitalResponseDto.setBusinessStatusName("폐업"); break;
-            default: String.valueOf(hospital.getBusinessStatusCode()); break;
+            default: hospitalResponseDto.setBusinessStatusName(String.valueOf(hospital.getBusinessStatusCode())); break;
         }
 
         return hospitalResponseDto;
