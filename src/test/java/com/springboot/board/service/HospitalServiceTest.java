@@ -24,7 +24,7 @@ class HospitalServiceTest {
     }
 
     @Test
-    @DisplayName("영업 상태명이 잘 나오는지 테스트")
+    @DisplayName("영업 상태코드13 = 영업중 테스트")
     public void getBusinessStatusNameTest() {
         Hospital openHospital = Hospital.builder()
                                 .id(1)
@@ -35,13 +35,16 @@ class HospitalServiceTest {
         HospitalResponseDto openHospitalResponseDto = hospitalService.getHospital(1);
         assertEquals("영업중", openHospitalResponseDto.getBusinessStatusName());
         assertEquals("효치과의원", openHospitalResponseDto.getHospitalName());
+    }
 
-
+    @Test
+    @DisplayName("영업 상태코드3 = 폐업 테스트")
+    public void getCloseBusinessStatusNameTest() {
         Hospital closeHospital = Hospital.builder()
-                                .id(71857)
-                                .hospitalName("최종범내과의원")
-                                .businessStatusCode(3)
-                                .build();
+                .id(71857)
+                .hospitalName("최종범내과의원")
+                .businessStatusCode(3)
+                .build();
         Mockito.when(hospitalRepository.findById(71857)).thenReturn(Optional.of(closeHospital));
         HospitalResponseDto closeHospitalResponseDto = hospitalService.getHospital(71857);
         assertEquals("폐업", closeHospitalResponseDto.getBusinessStatusName());
