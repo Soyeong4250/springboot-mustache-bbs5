@@ -2,6 +2,7 @@ package com.springboot.board.domain.entity;
 
 import com.springboot.board.domain.dto.HospitalResponseDto;
 import com.springboot.board.repository.HospitalRepository;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -30,14 +31,15 @@ public class Hospital {
 
     private Integer businessStatusCode;
 
-
-    public Hospital(Integer id, String roadNameAddress, String fullAddress, String hospitalName, String businessTypeName, Integer totalNumberOfBeds) {
+    @Builder
+    public Hospital(Integer id, String roadNameAddress, String fullAddress, String hospitalName, String businessTypeName, Integer totalNumberOfBeds, Integer businessStatusCode) {
         this.id = id;
         this.roadNameAddress = roadNameAddress;
         this.fullAddress = fullAddress;
         this.hospitalName = hospitalName;
         this.businessTypeName = businessTypeName;
         this.totalNumberOfBeds = totalNumberOfBeds;
+        this.businessStatusCode = businessStatusCode;
     }
 
     public static HospitalResponseDto of(Hospital hospital) {

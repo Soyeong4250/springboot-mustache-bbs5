@@ -15,8 +15,17 @@ public class HospitalRequestDto {
     private String hospitalName;
     private String businessTypeName;
     private int totalNumberOfBeds;
+    private Integer businessStatusCode;
 
     public Hospital toEntity() {
-        return new Hospital(this.id, this.roadNameAddress, this.fullAddress, this.hospitalName, this.businessTypeName, this.totalNumberOfBeds);
+        return Hospital.builder()
+                .id(this.id)
+                .roadNameAddress(this.roadNameAddress)
+                .fullAddress(this.fullAddress)
+                .hospitalName(this.hospitalName)
+                .businessTypeName(this.businessTypeName)
+                .totalNumberOfBeds(this.totalNumberOfBeds)
+                .businessStatusCode(this.businessStatusCode)
+                .build();
     }
 }
