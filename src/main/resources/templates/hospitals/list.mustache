@@ -1,6 +1,18 @@
 {{> layouts/header}}
 <div class = "container">
     <h1 class="pageTitle"> 전국 병원 정보 </h1>
+    {{# keyword}}
+        <form class="d-flex my-3" role="search" action="/hospitals" method="get">
+            <input class="form-control me-2" type="search" name="keyword" aria-label="Search" value={{keyword}}>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    {{/keyword}}
+    {{^ keyword}}
+        <form class="d-flex my-3" role="search" action="/hospitals" method="get">
+            <input class="form-control me-2" type="search" name="keyword" placeholder="지역 검색" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    {{/keyword}}
     <table class="table table-bordered text-center">
         <thead>
         <tr class="table-primary">
@@ -22,6 +34,39 @@
     </table>
     {{! Page }}
     <div>
+        {{# keyword}}
+        <ul class="pagination justify-content-center">
+            {{# hasPrev}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{previous}}&keyword={{keyword}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {{/ hasPrev}}
+            {{^ hasPrev}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{previous}}&keyword={{keyword}}" disabled="disabled" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {{/hasPrev}}
+            {{# hasNext}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{next}}&keyword={{keyword}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {{/ hasNext}}
+            {{^ hasNext}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{next}}&keyword={{keyword}}" disabled="disabled" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {{/ hasNext}}
+        </ul>
+        {{/keyword}}
+        {{^ keyword}}
         <ul class="pagination justify-content-center">
             {{# hasPrev}}
                 <li class="page-item">
@@ -52,6 +97,7 @@
                 </li>
             {{/ hasNext}}
         </ul>
+        {{/keyword}}
     </div>
     <div>
         <button type="button" onclick="location.href='/articles/register'" class="btn btn-primary">Write</button>
