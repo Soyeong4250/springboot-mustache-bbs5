@@ -1,6 +1,9 @@
+{{> layouts/header}}
 <div>
     이 페이지는 에러 페이지입니다. <br>
     {{# message}}
         {{ message }}
     {{/message}}
+    {{ path }}
 </div>
+{{> layouts/footer}}
