@@ -2,6 +2,8 @@ package com.springboot.board.controller;
 
 import com.springboot.board.domain.dto.UserJoinReq;
 import com.springboot.board.domain.dto.UserJoinRes;
+import com.springboot.board.domain.dto.UserLoginReq;
+import com.springboot.board.domain.dto.UserLoginRes;
 import com.springboot.board.domain.entity.Response;
 import com.springboot.board.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +25,11 @@ public class UserRestController {
     public Response<UserJoinRes> join(@RequestBody UserJoinReq userJoinReq) {
         UserJoinRes user = userService.join(userJoinReq);
         return Response.success(new UserJoinRes(user.getUserName(), user.getEmail(), user.getRole()));
+    }
+
+    @PostMapping("/login")
+    public Response<UserLoginRes> login(@RequestBody UserLoginReq userLoginReq) {
+        String token = userService.login(userLoginReq.getUserName(), userLoginReq.getPassword());
+        return Response.success(new UserLoginRes(token));
     }
 }
