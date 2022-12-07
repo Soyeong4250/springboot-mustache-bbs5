@@ -1,25 +1,11 @@
 package com.springboot.board.controller;
 
-import com.springboot.board.domain.dto.HospitalResponseDto;
-import com.springboot.board.service.HospitalService;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(HospitalRestController.class)
 class HospitalRestControllerTest {
 
-    @Autowired
+    /*@Autowired
     MockMvc mockMvc;
 
     @MockBean
@@ -50,5 +36,5 @@ class HospitalRestControllerTest {
                 .andDo(print());  // http request, response 내역 출력
 
         verify(hospitalService).getHospital(hospitalId);  // getHospital() 메소드의 호출이 있었는지 확인
-    }
+    }*/
 }
