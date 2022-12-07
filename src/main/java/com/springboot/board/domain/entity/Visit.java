@@ -1,6 +1,6 @@
 package com.springboot.board.domain.entity;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Visit {
 
     @Id
@@ -27,5 +25,13 @@ public class Visit {
     private User user;
 
     private String disease;
-    private float amount;
+    private Integer amount;
+
+    @Builder
+    public Visit(Hospital hospital, User user, String disease, Integer amount) {
+        this.hospital = hospital;
+        this.user = user;
+        this.disease = disease;
+        this.amount = amount;
+    }
 }
