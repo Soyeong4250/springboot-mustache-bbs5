@@ -9,6 +9,7 @@ import com.springboot.board.repository.ArticleRepository;
 import com.springboot.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,10 +40,12 @@ public class ArticleController {
     }
 
     @PostMapping()
-    public String registArticles(ArticleRequestDto articleDto) {
+    public String registArticles(ArticleRequestDto articleDto, Authentication authentication) {
         log.info(articleDto.toString());
-        User user = userRepository.findByUserName(articleDto.getWriter())
-                .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, String.format("%s와 일치하는 회원을 찾을 수 없습니다.", articleDto.getWriter())));
+        String userName = authentication.getName();
+        log.info("userName : {}", userName);
+        User user = userRepository.findByUserName(userName)
+                .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, String.format("%s와 일치하는 회원을 찾을 수 없습니다.", userName)));
         Article savedArticle = articleRepository.save(Article.builder()
                                                     .title(articleDto.getTitle())
                                                     .content(articleDto.getContent())
@@ -87,10 +90,12 @@ public class ArticleController {
     }
 
     @PostMapping("/{id}/update")
-    public String updateArticle(@PathVariable Long id, ArticleRequestDto articleDto, Model model) {
+    public String updateArticle(@PathVariable Long id, ArticleRequestDto articleDto, Authentication authentication, Model model) {
         log.debug("updateArticle 호출");
         log.info("title:{} content{}", articleDto.getTitle(), articleDto.getContent());
-        User user = userRepository.findByUserName(articleDto.getWriter()).get();
+        String userName = authentication.getName();
+        log.info("userName : ", userName);
+        User user = userRepository.findByUserName(userName).get();
         Article article = articleRepository.save(Article.builder()
                                                 .title(articleDto.getTitle())
                                                 .content(articleDto.getContent())

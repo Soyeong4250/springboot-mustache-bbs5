@@ -30,7 +30,7 @@ public class ArticleService {
 
     public ArticleResponseDto saveArticle(ArticleRequestDto request, String userName) {
         User user = userRepository.findByUserName(userName)
-                .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, String.format("%d는(은) 존재하지 않는 회원입니다.", request.getWriter())));
+                .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, String.format("%d는(은) 존재하지 않는 회원입니다.", userName)));
         Article article = Article.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
