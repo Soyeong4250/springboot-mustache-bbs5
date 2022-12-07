@@ -4,9 +4,11 @@ import com.springboot.board.domain.entity.User;
 import com.springboot.board.domain.entity.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserJoinReq {
 
     private String userName;
