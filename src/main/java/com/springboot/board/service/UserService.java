@@ -49,6 +49,6 @@ public class UserService {
 
     public User getUserByUserName(String userName) {
         return userRepository.findByUserName(userName)
-                .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, ""));
+                .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, String.format("%s와 일치하는 회원을 찾지 못했습니다.", userName)));
     }
 }
