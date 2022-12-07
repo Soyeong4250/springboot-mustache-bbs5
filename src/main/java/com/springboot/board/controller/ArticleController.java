@@ -1,8 +1,13 @@
 package com.springboot.board.controller;
 
-import com.springboot.board.domain.entity.Article;
 import com.springboot.board.domain.dto.ArticleRequestDto;
+import com.springboot.board.domain.entity.Article;
+import com.springboot.board.domain.entity.User;
+import com.springboot.board.exception.ErrorCode;
+import com.springboot.board.exception.SpringBootAppException;
 import com.springboot.board.repository.ArticleRepository;
+import com.springboot.board.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +21,12 @@ import java.util.Optional;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 @RequestMapping("/articles")
 public class ArticleController {
 
     private final ArticleRepository articleRepository;
-
-    public ArticleController(ArticleRepository articleRepository) {
-        this.articleRepository = articleRepository;
-    }
+    private final UserRepository userRepository;
 
     @GetMapping()
     public String articlesIndex() {
@@ -38,7 +41,13 @@ public class ArticleController {
     @PostMapping()
     public String registArticles(ArticleRequestDto articleDto) {
         log.info(articleDto.toString());
-        Article savedArticle = articleRepository.save(articleDto.toEntity());
+        User user = userRepository.findByUserName(articleDto.getWriter())
+                .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, String.format("%s와 일치하는 회원을 찾을 수 없습니다.", articleDto.getWriter())));
+        Article savedArticle = articleRepository.save(Article.builder()
+                                                    .title(articleDto.getTitle())
+                                                    .content(articleDto.getContent())
+                                                    .user(user)
+                                                    .build());
         log.info("generatedId: {}", savedArticle.getId());
         return String.format("redirect:/articles/%d", savedArticle.getId());
     }
@@ -81,7 +90,12 @@ public class ArticleController {
     public String updateArticle(@PathVariable Long id, ArticleRequestDto articleDto, Model model) {
         log.debug("updateArticle 호출");
         log.info("title:{} content{}", articleDto.getTitle(), articleDto.getContent());
-        Article article = articleRepository.save(articleDto.toEntity());
+        User user = userRepository.findByUserName(articleDto.getWriter()).get();
+        Article article = articleRepository.save(Article.builder()
+                                                .title(articleDto.getTitle())
+                                                .content(articleDto.getContent())
+                                                .user(user)
+                                                .build());
         model.addAttribute("article", article);
         return String.format("redirect:/articles/%d", article.getId());
     }

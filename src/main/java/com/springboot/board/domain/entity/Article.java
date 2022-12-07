@@ -1,6 +1,6 @@
 package com.springboot.board.domain.entity;
 
-import com.springboot.board.domain.dto.ArticleResponseDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,13 +19,15 @@ public class Article {
 
     private String title;
     private String content;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Article(String title, String content) {
+    @Builder
+    public Article(String title, String content, User user) {
         this.title = title;
         this.content = content;
+        this.user = user;
     }
 
-    public static ArticleResponseDto of(Article article) {
-        return new ArticleResponseDto(article.getId(), article.getTitle(), article.getContent());
-    }
 }

@@ -5,6 +5,7 @@ import com.springboot.board.domain.dto.ArticleResponseDto;
 import com.springboot.board.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,8 +26,10 @@ public class ArticleRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<ArticleResponseDto> register(@RequestBody ArticleRequestDto articleRequestDto) {
-        ArticleResponseDto articleResponseDto = articleService.saveArticle(articleRequestDto);
+    public ResponseEntity<ArticleResponseDto> register(@RequestBody ArticleRequestDto articleRequestDto, Authentication authentication) {
+        String userName = authentication.getName();
+        log.info("userName: {}", userName);
+        ArticleResponseDto articleResponseDto = articleService.saveArticle(articleRequestDto, userName);
         return ResponseEntity.ok().body(articleResponseDto);
     }
 }
