@@ -46,4 +46,9 @@ public class UserService {
 
         return JwtTokenUtil.createToken(userName, secretKey, expireTimeMs);
     }
+
+    public User getUserByUserName(String userName) {
+        return userRepository.findByUserName(userName)
+                .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, ""));
+    }
 }

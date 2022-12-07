@@ -20,4 +20,17 @@ public class JwtTokenUtil {
                 .compact()
                 ;
     }
+
+    private static Claims extractClaims(String token, String key) {
+        return Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
+    }
+
+    public static boolean isExpired(String token, String secretKey) {
+        Date expireDate = extractClaims(token, secretKey).getExpiration();
+        return expireDate.before(new Date());
+    }
+
+    public static String getUserName(String token, String secretKey) {
+        return extractClaims(token, secretKey).get("userName", String.class);
+    }
 }
