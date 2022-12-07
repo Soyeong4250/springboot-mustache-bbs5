@@ -31,7 +31,7 @@ public class VisitService {
     public void createVisit(VisitCreateReq request, String userName) {
         Hospital hospital = hospitalRepository.findById(request.getHospitalId())
                 .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, String.format("%d는(은) 존재하지 않는 병원입니다.", request.getHospitalId())));
-        User user = userRepository.findByUserName(request.getUserName())
+        User user = userRepository.findByUserName(userName)
                 .orElseThrow(() -> new SpringBootAppException(ErrorCode.NOT_FOUND, String.format("%d는(은) 존재하지 않는 회원입니다.", request.getUserName())));
 
         Visit visit = Visit.builder()
