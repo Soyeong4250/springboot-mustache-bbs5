@@ -1,11 +1,7 @@
 package com.springboot.board.domain.entity;
 
-import com.springboot.board.exception.ErrorCode;
-import com.springboot.board.exception.SpringBootAppException;
 import com.springboot.board.repository.ArticleRepository;
 import com.springboot.board.repository.UserRepository;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,7 +13,7 @@ class BaseEntityTest {
     @Autowired
     UserRepository userRepository;
 
-    @Test
+    /*@Test
     @DisplayName("Article AuditingTest 실행")
     public void articleAuditingTest() {
         String userName = "likelion";
@@ -31,6 +27,6 @@ class BaseEntityTest {
                                 .build();
         Article savedArticle = articleRepository.save(article);
         System.out.println(savedArticle.toString());
-    }
+    }*/
 
 }
