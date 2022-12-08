@@ -1,17 +1,18 @@
 package com.springboot.board.domain.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "article")
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Article {
+@Setter
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Article extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
